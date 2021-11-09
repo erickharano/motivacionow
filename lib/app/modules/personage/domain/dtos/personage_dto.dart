@@ -1,17 +1,17 @@
-class ProductDTO {
+class PersonageDTO {
   final int page;
   final int perPage;
 
-  const ProductDTO({
-    this.page = 1,
-    this.perPage = 10,
+  PersonageDTO({
+    required this.page,
+    required this.perPage,
   });
 
-  ProductDTO copyWith({
+  PersonageDTO copyWith({
     int? page,
     int? perPage,
   }) {
-    return ProductDTO(
+    return PersonageDTO(
       page: page ?? this.page,
       perPage: perPage ?? this.perPage,
     );

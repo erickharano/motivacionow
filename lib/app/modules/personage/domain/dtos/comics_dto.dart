@@ -1,17 +1,17 @@
-class ProductDTO {
+class ComicsDTO {
   final int page;
   final int perPage;
 
-  const ProductDTO({
-    this.page = 1,
-    this.perPage = 10,
+  ComicsDTO({
+    required this.page,
+    required this.perPage,
   });
 
-  ProductDTO copyWith({
+  ComicsDTO copyWith({
     int? page,
     int? perPage,
   }) {
-    return ProductDTO(
+    return ComicsDTO(
       page: page ?? this.page,
       perPage: perPage ?? this.perPage,
     );
