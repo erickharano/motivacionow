@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/helpers/errors/failure.dart';
-import '../../../core/helpers/url/personage.dart';
 import '../dtos/personage_dto.dart';
 import '../repositories/personage_repository.dart';
+import '../entities/personage.dart';
 import 'personage_usecase.dart';
 
 class PersonageUsacaseImpl implements PersonageUsecase {

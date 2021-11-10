@@ -1,5 +1,5 @@
-class Personage {
-  const Personage._();
+class PersonageEndpoint {
+  const PersonageEndpoint._();
 
   static const String url = "https://developer.marvel.com";
 }

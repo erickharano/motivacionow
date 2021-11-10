@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/helpers/errors/errors.dart';
-import '../../../core/helpers/url/personage.dart';
 import '../../domain/repositories/personage_repository.dart';
 import '../../domain/dtos/personage_dto.dart';
+import '../../domain/entities/personage.dart';
 import '../datasources/persosage_remote_datasource.dart';
 
 class PersonageRepositoryImpl implements PersonageRepository {
@@ -20,8 +20,6 @@ class PersonageRepositoryImpl implements PersonageRepository {
     try {
       final response = await datasource.getAll(queries: params.toMap());
       return Right(response);
-    } on DataSourceError catch (error) {
-      return Left(error);
     } on Failure catch (error) {
       return Left(error);
     }

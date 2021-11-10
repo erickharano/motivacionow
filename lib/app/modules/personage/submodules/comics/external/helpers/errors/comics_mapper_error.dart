@@ -1,4 +1,4 @@
-import '../../../../core/helpers/errors/failure.dart';
+import '../../../../../../core/helpers/errors/failure.dart';
 
 class ComicsMapperError extends Failure {
   ComicsMapperError({

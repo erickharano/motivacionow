@@ -2,7 +2,7 @@ import 'package:dio/dio.dart' hide HttpClientAdapter;
 
 import '../../../../../core/adapters/http_client/http_client_adapter.dart';
 import '../../../../../core/helpers/errors/errors.dart';
-import '../../../../infra/datasources/comics_remote_datasource.dart';
+import '../../infra/datatsources/comics_remote_datasource.dart';
 import '../../domain/entities/comics.dart';
 import '../mappers/comics_mapper.dart';
 

@@ -6,6 +6,8 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp().modular();
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+    ).modular();
   }
 }
