@@ -1,5 +1,5 @@
-import 'package:motivacionow/app/modules/personage/domain/entities/entities.dart';
-import 'package:motivacionow/app/modules/personage/external/helpers/errors/comics_mapper_error.dart';
+import '../../domain/entities/comics.dart';
+import '../helpers/errors/comics_mapper_error.dart';
 
 class ComicsMapper {
   const ComicsMapper._();

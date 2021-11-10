@@ -10,8 +10,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          children: [
-            const PersonageDetails(),
+          children: const [
+            PersonageDetailsView(),
           ],
         ),
       ),

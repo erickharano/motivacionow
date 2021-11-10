@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:motivacionow/app/modules/products/domain/dtos/product_dto.dart';
-import 'package:motivacionow/app/modules/products/domain/entities/products.dart';
+
+import '../../../core/helpers/errors/failure.dart';
+import '../dtos/product_dto.dart';
+import '../entities/products.dart';
 
 abstract class ProductsRepository {
   Future<Either<Failure, List<Products>>> getAll({

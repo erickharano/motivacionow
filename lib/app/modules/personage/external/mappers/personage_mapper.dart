@@ -1,5 +1,5 @@
 import 'package:motivacionow/app/modules/personage/domain/entities/entities.dart';
-import 'package:motivacionow/app/modules/personage/external/helpers/errors/Personage_mapper_error.dart';
+import 'package:motivacionow/app/modules/personage/external/helpers/errors/personage_mapper_error.dart';
 
 class PersonageMapper {
   const PersonageMapper._();
