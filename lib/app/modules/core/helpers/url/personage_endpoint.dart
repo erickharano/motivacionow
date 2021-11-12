@@ -1,7 +1,7 @@
 class PersonageEndpoint {
   const PersonageEndpoint._();
 
-  static const String url = "https://gateway.marvel.com";
+  static const String urlBase = "https://gateway.marvel.com";
 
   static const String v1 = '/v1/public';
 

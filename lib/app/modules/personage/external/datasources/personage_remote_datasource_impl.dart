@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart' hide HttpClientAdapter;
+import 'package:motivacionow/app/modules/core/helpers/url/personage_endpoint.dart';
 
 import '../../../core/adapters/http_client/http_client_adapter.dart';
 import '../../../core/helpers/errors/errors.dart';
@@ -19,7 +20,10 @@ class PersonageRemoteDatasourceImpl implements PersonageRemoteDatasource {
     required Map<String, dynamic> queries,
   }) async {
     try {
-      final response = await httpClient.get(queries: queries);
+      final response = await httpClient.get(
+        queries: queries,
+        url: PersonageEndpoint.personages,
+      );
       return PersonageMapper.fromListMap(
         maps: (response.data as List).cast<Map<String, dynamic>>(),
       );

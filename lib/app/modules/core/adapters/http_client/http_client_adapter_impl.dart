@@ -6,16 +6,15 @@ import 'response_adapter.dart';
 
 class HttpClientAdapterImpl implements HttpClientAdapter {
   final Dio dio;
-  final String url;
 
   HttpClientAdapterImpl({
     required this.dio,
-    required this.url,
   });
 
   @override
   Future<ResponseAdapter> get({
     required Map<String, dynamic> queries,
+    required String url,
   }) async {
     final response = await dio.get(url);
     // final response = await dio.get(url, queryParameters: queries);

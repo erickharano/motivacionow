@@ -12,12 +12,6 @@ import 'presenter/views/personage_details_view.dart';
 class PersonageModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind(
-          (i) => HttpClientAdapterImpl(
-            dio: i.get(),
-            url: PersonageEndpoint.personages,
-          ),
-        ),
         Bind((i) => PersonageRemoteDatasourceImpl(httpClient: i.get())),
         Bind((i) => PersonageRepositoryImpl(datasource: i.get())),
         Bind((i) => PersonageUsecaseImpl(repository: i.get())),
@@ -27,7 +21,9 @@ class PersonageModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (context, args) => const PersonageView()),
-        ChildRoute('/details/{id}',
-            child: (context, args) => const PersonageDetailsView()),
+        ChildRoute('/details',
+            child: (context, args) => PersonageDetailsView(
+                  personage: args.data['personage'],
+                )),
       ];
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:motivacionow/app/modules/personage/domain/entities/personage.dart';
 
 import '../../../../utils_widget.dart';
@@ -13,18 +14,26 @@ class PersonageListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Card(
-          child: Row(
-            children: [
-              Text(
-                personage.name,
-              ),
-            ],
+    return GestureDetector(
+      onTap: () {
+        Modular.to.navigate(
+          '/details',
+          arguments: {'personage': personage},
+        );
+      },
+      child: Row(
+        children: [
+          Card(
+            child: Row(
+              children: [
+                Text(
+                  personage.name,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
 
     // return ListTile(
