@@ -6,10 +6,10 @@ import '../repositories/personage_repository.dart';
 import '../entities/personage.dart';
 import 'personage_usecase.dart';
 
-class PersonageUsacaseImpl implements PersonageUsecase {
+class PersonageUsecaseImpl implements PersonageUsecase {
   final PersonageRepository repository;
 
-  const PersonageUsacaseImpl({
+  const PersonageUsecaseImpl({
     required this.repository,
   });
 

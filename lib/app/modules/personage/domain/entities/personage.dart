@@ -5,14 +5,22 @@ class Personage extends Equatable {
   final String name;
   final String description;
   final String? image;
+  final String? author;
 
   const Personage({
     required this.id,
     required this.name,
     required this.description,
-    required this.image,
+    this.image,
+    this.author,
   });
 
   @override
-  List<Object?> get props => [id, name, description, image];
+  List<Object?> get props => [
+        id,
+        name,
+        description,
+        image,
+        author,
+      ];
 }
