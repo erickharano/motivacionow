@@ -14,51 +14,29 @@ class PersonageListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Modular.to.navigate(
-          '/details',
-          arguments: {'personage': personage},
-        );
-      },
-      child: Row(
-        children: [
-          Card(
-            child: Row(
-              children: [
-                Text(
-                  personage.name,
-                ),
-              ],
-            ),
-          ),
-        ],
+    return ListTile(
+      leading: const Image(
+        // image: NetworkImage(imageUri),
+        image: AssetImage("images/image-1.png"),
+        height: 150,
+        width: 100,
       ),
+      title: Text(
+        personage.name,
+        style: const TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          color: AppTheme.cBlack,
+        ),
+      ),
+      subtitle: Text(
+        personage.author ?? "",
+        style: const TextStyle(
+          fontSize: 18,
+          color: AppTheme.cBlack,
+        ),
+      ),
+      trailing: const Icon(Icons.keyboard_arrow_right_outlined),
     );
-
-    // return ListTile(
-    //   leading: const Image(
-    //     // image: NetworkImage(imageUri),
-    //     image: AssetImage("images/image-1.png"),
-    //     height: 150,
-    //     width: 100,
-    //   ),
-    //   title: Text(
-    //     personage.name,
-    //     style: const TextStyle(
-    //       fontSize: 22,
-    //       fontWeight: FontWeight.bold,
-    //       color: AppTheme.cBlack,
-    //     ),
-    //   ),
-    //   subtitle: Text(
-    //     personage.author ?? "",
-    //     style: const TextStyle(
-    //       fontSize: 18,
-    //       color: AppTheme.cBlack,
-    //     ),
-    //   ),
-    //   trailing: const Icon(Icons.keyboard_arrow_right_outlined),
-    // );
   }
 }

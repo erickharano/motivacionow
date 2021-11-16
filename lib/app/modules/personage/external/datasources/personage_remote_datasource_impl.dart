@@ -1,12 +1,12 @@
+import 'dart:convert';
 import 'package:dio/dio.dart' hide HttpClientAdapter;
-import 'package:motivacionow/app/modules/core/helpers/url/personage_endpoint.dart';
 
+import '../../../core/helpers/url/personage_endpoint.dart';
 import '../../../core/adapters/http_client/http_client_adapter.dart';
 import '../../../core/helpers/errors/errors.dart';
-import '../../../core/helpers/errors/failure.dart';
+import '../../infra/datasources/persosage_remote_datasource.dart';
 import '../../domain/entities/personage.dart';
 import '../mappers/personage_mapper.dart';
-import '../../infra/datasources/persosage_remote_datasource.dart';
 
 class PersonageRemoteDatasourceImpl implements PersonageRemoteDatasource {
   final HttpClientAdapter httpClient;
@@ -24,8 +24,9 @@ class PersonageRemoteDatasourceImpl implements PersonageRemoteDatasource {
         queries: queries,
         url: PersonageEndpoint.personages,
       );
+      var body = response.data['data']['results'] ?? [];
       return PersonageMapper.fromListMap(
-        maps: (response.data as List).cast<Map<String, dynamic>>(),
+        maps: (body as List).cast<Map<String, dynamic>>(),
       );
     } on Failure {
       rethrow;

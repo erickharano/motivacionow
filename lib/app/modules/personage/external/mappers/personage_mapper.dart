@@ -7,12 +7,13 @@ class PersonageMapper {
   static Personage fromMap({
     required Map<String, dynamic> map,
   }) {
+    var image = map['thumbnail']['path'] + "." + map['thumbnail']['extension'];
     try {
       return Personage(
-        id: map['id'],
-        description: map['description'],
-        image: map['image'],
-        name: map['name'],
+        id: map['id'] ?? "",
+        description: map['description'] ?? "",
+        image: image ?? "",
+        name: map['name'] ?? "",
       );
     } catch (e, stackTrace) {
       throw PersonageMapperError(
