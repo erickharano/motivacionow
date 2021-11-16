@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:motivacionow/app/utils_widget.dart';
 
 import '../../domain/dtos/personage_dto.dart';
 import '../bloc/personage_bloc.dart';
@@ -62,9 +63,26 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: const Text(
-          "Listagem de Personagens",
+          "MARVEL",
+          style: TextStyle(
+            fontSize: 35,
+            color: AppTheme.cBlack,
+            fontWeight: FontWeight.bold,
+            letterSpacing: -2.0,
+          ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+              color: AppTheme.cBlack,
+            ),
+          ),
+        ],
       ),
       body: BlocBuilder<PersonageBloc, PersonageState>(
         bloc: controller,
@@ -78,8 +96,9 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
                 );
               }
 
-              return ListView.builder(
+              return ListView.separated(
                 controller: _scrollController,
+                padding: const EdgeInsets.all(10.0),
                 shrinkWrap: true,
                 itemCount: state.personages.length + 1,
                 itemBuilder: (BuildContext context, int index) {
@@ -95,6 +114,9 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
                     personage: state.personages[index],
                   );
                 },
+                separatorBuilder: (_, __) => const SizedBox(
+                  height: 25,
+                ),
               );
             case PersonageErrorState:
               state as PersonageErrorState;
