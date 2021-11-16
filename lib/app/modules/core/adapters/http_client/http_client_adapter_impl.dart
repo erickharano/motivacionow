@@ -17,7 +17,6 @@ class HttpClientAdapterImpl implements HttpClientAdapter {
     required String url,
   }) async {
     final response = await dio.get(url);
-    // final response = await dio.get(url, queryParameters: queries);
     if (!(response.statusCode == 200)) {
       throw HttpClientError(
         response.statusMessage ?? 'Erro inesperado',

@@ -14,6 +14,6 @@ class MarvelHash {
   });
 
   String createHash() {
-    return md5.convert(utf8.encode(timestamp + public + private)).toString();
+    return md5.convert(utf8.encode(timestamp + private + public)).toString();
   }
 }

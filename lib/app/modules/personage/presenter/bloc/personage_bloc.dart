@@ -41,9 +41,14 @@ class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
     var response = await usecase(params: event.params);
     var paginateState = response.fold((left) {
       if (left is HttpClientError && left.statusCode == 400) {
-        return ((state as PersonageSuccessState).copyWith(hasMax: true, isLoading: false));
+        return (state as PersonageSuccessState).copyWith(
+          hasMax: true,
+          isLoading: false,
+        );
       }
-      return (PersonageErrorState(error: left.message));
+      return PersonageErrorState(
+        error: left.message,
+      );
     }, (right) {
       return PersonageSuccessState(
         personages: (state as PersonageSuccessState).personages..addAll(right),
