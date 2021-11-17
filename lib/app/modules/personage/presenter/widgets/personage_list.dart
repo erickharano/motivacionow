@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:motivacionow/app/modules/personage/domain/entities/personage.dart';
 
-import '../../../../utils_widget.dart';
+import '../../domain/entities/personage.dart';
 
-class PersonageListItem extends StatelessWidget {
+class PersonageList extends StatelessWidget {
   final Personage personage;
 
-  const PersonageListItem({
+  const PersonageList({
     Key? key,
     required this.personage,
   }) : super(key: key);
@@ -15,11 +14,12 @@ class PersonageListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      // color: Colors.grey.shade200,
       elevation: 10,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Modular.to.pushNamed("/details/${personage.id}");
+        },
         borderRadius: BorderRadius.circular(20),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -28,13 +28,14 @@ class PersonageListItem extends StatelessWidget {
             width: double.infinity,
             child: Row(
               children: <Widget>[
-                const Image(
-                  image: NetworkImage(
-                      "https://static3.tcdn.com.br/img/img_prod/460977/pre_venda_busto_homem_de_ferro_iron_man_marvel_mark_iii_life_size_sideshow_43864_1_20201211173537.jpg"),
-                  // image: AssetImage("images/image-1.png"),
-                  height: 220,
-                  width: 180,
-                  fit: BoxFit.cover,
+                Hero(
+                  tag: personage.id,
+                  child: Image(
+                    image: NetworkImage(personage.image),
+                    height: 220,
+                    width: 180,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Expanded(
                   child: Padding(
@@ -51,7 +52,7 @@ class PersonageListItem extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          personage.description ?? "",
+                          personage.description,
                           style: const TextStyle(
                             fontSize: 15,
                           ),
@@ -81,30 +82,5 @@ class PersonageListItem extends StatelessWidget {
         ),
       ),
     );
-
-    // return ListTile(
-    //   leading: const Image(
-    //     // image: NetworkImage(imageUri),
-    //     image: AssetImage("images/image-1.png"),
-    //     height: 150,
-    //     width: 100,
-    //   ),
-    //   title: Text(
-    //     personage.name,
-    //     style: const TextStyle(
-    //       fontSize: 22,
-    //       fontWeight: FontWeight.bold,
-    //       color: AppTheme.cBlack,
-    //     ),
-    //   ),
-    //   subtitle: Text(
-    //     personage.author ?? "",
-    //     style: const TextStyle(
-    //       fontSize: 18,
-    //       color: AppTheme.cBlack,
-    //     ),
-    //   ),
-    //   trailing: const Icon(Icons.keyboard_arrow_right_outlined),
-    // );
   }
 }

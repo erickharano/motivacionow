@@ -1,26 +1,26 @@
 class PersonageDTO {
-  final int page;
-  final int perPage;
+  final int offset;
+  final int limit;
 
   PersonageDTO({
-    required this.page,
-    required this.perPage,
+    required this.offset,
+    required this.limit,
   });
 
   PersonageDTO copyWith({
-    int? page,
-    int? perPage,
+    int? offset,
+    int? limit,
   }) {
     return PersonageDTO(
-      page: page ?? this.page,
-      perPage: perPage ?? this.perPage,
+      offset: offset ?? this.offset,
+      limit: limit ?? this.limit,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'page': page,
-      'perPage': perPage,
+      'offset': offset,
+      'limit': limit,
     };
   }
 }

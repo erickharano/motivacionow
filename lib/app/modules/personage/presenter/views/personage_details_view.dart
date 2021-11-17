@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:motivacionow/app/modules/personage/domain/entities/personage.dart';
-import 'package:motivacionow/app/modules/personage/presenter/widgets/personage_top_text.dart';
 
+import '../widgets/personage_top_text.dart';
 import '../../../../utils_widget.dart';
 
 class PersonageDetailsView extends StatelessWidget {
-  final Personage? personage;
+  final int personageId;
 
   const PersonageDetailsView({
     Key? key,
-    this.personage,
+    required this.personageId,
   }) : super(key: key);
 
   @override
@@ -17,17 +16,23 @@ class PersonageDetailsView extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(personageId.toString()),
+      ),
       body: Stack(
         alignment: Alignment.topLeft,
         children: [
           Column(
             children: [
-              Container(
-                height: height * 0.35,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("images/topImage.jpg"),
+              Hero(
+                tag: personageId,
+                child: Container(
+                  height: height * 0.35,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("images/topImage.jpg"),
+                    ),
                   ),
                 ),
               ),

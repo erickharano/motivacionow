@@ -2,14 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:motivacionow/app/modules/core/adapters/http_client/http_client_adapter_impl.dart';
-import 'package:motivacionow/app/modules/core/helpers/marvel/marvel_hash.dart';
-import 'package:motivacionow/app/modules/core/helpers/url/personage_endpoint.dart';
-
+import '../core/adapters/http_client/http_client_adapter_impl.dart';
+import '../core/helpers/marvel/marvel_hash.dart';
+import '../core/helpers/url/personage_endpoint.dart';
 import 'domain/usecases/personage_usecase_impl.dart';
 import 'external/datasources/personage_remote_datasource_impl.dart';
-import 'presenter/bloc/personage_bloc.dart';
 import 'infra/repositories/personage_repository_impl.dart';
+import 'presenter/bloc/personage_bloc.dart';
 import 'presenter/views/personage_view.dart';
 import 'presenter/views/personage_details_view.dart';
 
@@ -44,9 +43,9 @@ class PersonageModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (context, args) => const PersonageView()),
-        ChildRoute('/details',
+        ChildRoute('/details/:id',
             child: (context, args) => PersonageDetailsView(
-                  personage: args.data['personage'],
+                  personageId: int.parse(args.params['id']),
                 )),
       ];
 }

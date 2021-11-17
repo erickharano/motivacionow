@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart' hide HttpClientAdapter;
 
 import '../../../core/helpers/url/personage_endpoint.dart';

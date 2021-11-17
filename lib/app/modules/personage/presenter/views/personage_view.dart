@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:motivacionow/app/utils_widget.dart';
 
+import '../../../../utils_widget.dart';
 import '../../domain/dtos/personage_dto.dart';
 import '../bloc/personage_bloc.dart';
+import '../widgets/personage_list_shimmer.dart';
 import '../widgets/personage_list.dart';
 
 class PersonageView extends StatefulWidget {
@@ -15,12 +16,12 @@ class PersonageView extends StatefulWidget {
 }
 
 class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
-  final _scrollController = ScrollController();
+  late ScrollController _scrollController;
 
   ValueNotifier<PersonageDTO> params = ValueNotifier(
     PersonageDTO(
-      page: 1,
-      perPage: 10,
+      offset: 0,
+      limit: 20,
     ),
   );
 
@@ -28,6 +29,7 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
   void initState() {
     super.initState();
     controller.add(PersonageFetchEvent(params: params.value));
+    _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
   }
 
@@ -40,10 +42,10 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
   }
 
   void _onScroll() {
-    final state = Modular.get<PersonageState>();
-    final page = params.value.page;
+    final state = controller.state;
+    final offset = params.value.offset;
     if (_isBottom && state is PersonageSuccessState && !state.isLoading) {
-      params.value = params.value.copyWith(page: page + 1);
+      params.value = params.value.copyWith(offset: offset + 20);
       controller.add(
         PersonagePaginateEvent(
           params: params.value,
@@ -70,7 +72,7 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
           style: TextStyle(
             fontSize: 35,
             color: AppTheme.cBlack,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w900,
             letterSpacing: -2.0,
           ),
         ),
@@ -110,7 +112,7 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
                     );
                   }
 
-                  return PersonageListItem(
+                  return PersonageList(
                     personage: state.personages[index],
                   );
                 },
@@ -125,8 +127,14 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
               );
 
             case PersonageLoadingState:
-              return const Center(
-                child: CircularProgressIndicator(),
+              return ListView.separated(
+                itemCount: (MediaQuery.of(context).size.height ~/ 220.0),
+                padding: const EdgeInsets.all(10.0),
+                shrinkWrap: true,
+                separatorBuilder: (_, __) => const SizedBox(
+                  height: 25,
+                ),
+                itemBuilder: (_, __) => const PersonageListShimmer(),
               );
 
             default:

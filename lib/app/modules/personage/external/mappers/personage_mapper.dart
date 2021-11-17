@@ -7,12 +7,14 @@ class PersonageMapper {
   static Personage fromMap({
     required Map<String, dynamic> map,
   }) {
+    var imageBase =
+        "https://static3.tcdn.com.br/img/img_prod/460977/pre_venda_busto_homem_de_ferro_iron_man_marvel_mark_iii_life_size_sideshow_43864_1_20201211173537.jpg";
     var image = map['thumbnail']['path'] + "." + map['thumbnail']['extension'];
     try {
       return Personage(
         id: map['id'] ?? "",
-        description: map['description'] ?? "",
-        image: image ?? "",
+        description: map['description'] ?? "...",
+        image: image ?? imageBase,
         name: map['name'] ?? "",
       );
     } catch (e, stackTrace) {
