@@ -4,5 +4,7 @@ import '../../../core/helpers/errors/failure.dart';
 import '../entities/personage.dart';
 
 abstract class PersonageDetailsRepository {
-  Future<Either<Failure, Personage>> get();
+  Future<Either<Failure, Personage>> get({
+    required int id,
+  });
 }

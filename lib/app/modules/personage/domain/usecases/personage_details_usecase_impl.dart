@@ -13,5 +13,9 @@ class PersonageDetailsUsecaseImpl implements PersonageDetailsUsecase {
   });
 
   @override
-  Future<Either<Failure, Personage>> call() => repository.get();
+  Future<Either<Failure, Personage>> call({
+    required int id,
+  }) {
+    return repository.get(id: id);
+  }
 }
