@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
+import '../bloc/personage_bloc.dart';
 import '../widgets/personage_top_text.dart';
-import '../../../../utils_widget.dart';
 
-class PersonageDetailsView extends StatelessWidget {
+class PersonageDetailsView extends StatefulWidget {
   final int personageId;
 
   const PersonageDetailsView({
@@ -12,71 +14,90 @@ class PersonageDetailsView extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<PersonageDetailsView> createState() => _PersonageDetailsViewState();
+}
+
+class _PersonageDetailsViewState extends ModularState<PersonageDetailsView, PersonageBloc> {
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(personageId.toString()),
+        title: Text(widget.personageId.toString()),
       ),
-      body: Stack(
-        alignment: Alignment.topLeft,
-        children: [
-          Column(
-            children: [
-              Hero(
-                tag: personageId,
-                child: Container(
-                  height: height * 0.35,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("images/topImage.jpg"),
+      body: SingleChildScrollView(
+        child: BlocBuilder<PersonageBloc, PersonageState>(
+          bloc: controller,
+          builder: (context, state) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Hero(
+                  tag: widget.personageId,
+                  child: Container(
+                    height: height * 0.35,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage("images/topImage.jpg"),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 1,
-                  horizontal: 1,
-                ),
-                child: Column(
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.only(top: 1),
-                      child: PersonageTopText(
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      const PersonageTopText(
                         title: "Wolverine",
                         subtitle: "Logan",
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 20,
-                  horizontal: 20,
-                ),
-                child: Column(
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text(
-                        "Descrição do personagem",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: AppTheme.cBlack,
+                      const SizedBox(height: 10),
+                      const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          "Description asjdh aiusdh aiusdh iausdh uiash duiashdiuasd uiahsdiu ahsdiu hasudi haisu dhaius dhauisdhauisdh iaudh iaudh iuasdh iaushd iuasdh ahjsd aksdh kjash doaiusdoquw eoquczxcbzcb zcbmn zbcm zbx asjdh aiusdh aiusdh iausdh uiash duiashdiuasd uiahsdiu ahsdiu hasudi haisu dhaius dhauisdhauisdh iaudh iaudh iuasdh iaushd iuasdh ahjsd aksdh kjash doaiusdoquw eoquczxcbzcb zcbmn zbcm zbx " +
+                              " Description asjdh aiusdh aiusdh iausdh uiash duiashdiuasd uiahsdiu ahsdiu hasudi haisu dhaius dhauisdhauisdh iaudh iaudh iuasdh iaushd iuasdh ahjsd aksdh kjash doaiusdoquw eoquczxcbzcb zcbmn zbcm zbx asjdh aiusdh aiusdh iausdh uiash duiashdiuasd uiahsdiu ahsdiu hasudi haisu dhaius dhauisdhauisdh iaudh iaudh iuasdh iaushd iuasdh ahjsd aksdh kjash doaiusdoquw eoquczxcbzcb zcbmn zbcm zbx ",
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 20),
+                      const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          "Comics",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 55,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          separatorBuilder: (context, index) => const SizedBox(width: 5.0),
+                          shrinkWrap: true,
+                          itemCount: 20,
+                          itemBuilder: (_, index) => Container(
+                            width: 50,
+                            height: 50,
+                            color: Colors.red,
+                            child: Text(index.toString()),
+                          ),
+                        ),
+                      ),
+                      // GridView.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder)
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          )
-        ],
+              ],
+            );
+          },
+        ),
       ),
     );
   }

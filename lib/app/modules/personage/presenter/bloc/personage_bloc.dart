@@ -16,7 +16,6 @@ class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
     required this.usecase,
   }) : super(const PersonageInitialState());
 
-  @override
   Stream<PersonageState> mapEventToState(PersonageEvent event) async* {
     if (event is PersonageFetchEvent) {
       yield* mapPersonageFetchEventToState(event);
