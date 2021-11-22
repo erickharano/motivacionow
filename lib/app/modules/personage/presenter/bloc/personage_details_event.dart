@@ -5,12 +5,12 @@ abstract class PersonageDetailsEvent extends Equatable {
 }
 
 class PersonageDetailsFetchEvent extends PersonageDetailsEvent {
-  final PersonageDTO params;
+  final int id;
 
   const PersonageDetailsFetchEvent({
-    required this.params,
+    required this.id,
   });
 
   @override
-  List<Object?> get props => [params];
+  List<Object?> get props => [id];
 }

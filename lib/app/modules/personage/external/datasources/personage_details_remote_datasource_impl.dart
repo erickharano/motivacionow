@@ -16,12 +16,12 @@ class PersonageDetailsRemoteDatasourceImpl implements PersonageDetailsRemoteData
 
   @override
   Future<Personage> get({
-    required Map<String, dynamic> queries,
+    required int id,
   }) async {
     try {
       final response = await httpClient.get(
-        queries: queries,
-        url: PersonageEndpoint.personages,
+        queries: {},
+        url: PersonageEndpoint.personages + "/$id",
       );
       return PersonageMapper.fromMap(
         map: response.data['data']['results'] ?? [],
