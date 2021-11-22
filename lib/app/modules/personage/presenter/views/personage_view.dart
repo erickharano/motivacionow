@@ -27,10 +27,10 @@ class _PersonageViewState extends ModularState<PersonageView, PersonageBloc> {
 
   @override
   void initState() {
-    super.initState();
-    controller.add(PersonageFetchEvent(params: params.value));
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
+    controller.add(PersonageFetchEvent(params: params.value));
+    super.initState();
   }
 
   @override

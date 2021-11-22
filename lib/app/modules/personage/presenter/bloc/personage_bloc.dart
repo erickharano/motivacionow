@@ -14,48 +14,39 @@ class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
 
   PersonageBloc({
     required this.usecase,
-  }) : super(const PersonageInitialState());
+  }) : super(const PersonageInitialState()) {
+    on<PersonageFetchEvent>((event, emit) async {
+      emit(const PersonageLoadingState());
 
-  Stream<PersonageState> mapEventToState(PersonageEvent event) async* {
-    if (event is PersonageFetchEvent) {
-      yield* mapPersonageFetchEventToState(event);
-    } else if (event is PersonagePaginateEvent) {
-      yield* mapPersonagePaginateEventToState(event);
-    }
-  }
-
-  Stream<PersonageState> mapPersonageFetchEventToState(PersonageFetchEvent event) async* {
-    yield const PersonageLoadingState();
-
-    final response = await usecase.call(params: event.params);
-    yield response.fold(
-      (left) => PersonageErrorState(error: left.message),
-      (right) => PersonageSuccessState(personages: right),
-    );
-  }
-
-  Stream<PersonageState> mapPersonagePaginateEventToState(PersonagePaginateEvent event) async* {
-    yield (state as PersonageSuccessState).copyWith(isLoading: true);
-
-    var response = await usecase(params: event.params);
-    var paginateState = response.fold((left) {
-      if (left is HttpClientError && left.statusCode == 400) {
-        return (state as PersonageSuccessState).copyWith(
-          hasMax: true,
-          isLoading: false,
-        );
-      }
-      return PersonageErrorState(
-        error: left.message,
-      );
-    }, (right) {
-      return PersonageSuccessState(
-        personages: (state as PersonageSuccessState).personages..addAll(right),
-        isLoading: false,
-      );
+      final response = await usecase.call(params: event.params);
+      emit(response.fold(
+        (left) => PersonageErrorState(error: left.message),
+        (right) => PersonageSuccessState(personages: right),
+      ));
     });
 
-    yield const PersonageLoadingState();
-    yield paginateState;
+    on<PersonagePaginateEvent>((event, emit) async {
+      emit((state as PersonageSuccessState).copyWith(isLoading: true));
+
+      var response = await usecase(params: event.params);
+      var paginateState = response.fold((left) {
+        if (left is HttpClientError && left.statusCode == 400) {
+          return (state as PersonageSuccessState).copyWith(
+            hasMax: true,
+            isLoading: false,
+          );
+        }
+        return PersonageErrorState(
+          error: left.message,
+        );
+      }, (right) {
+        return PersonageSuccessState(
+          personages: (state as PersonageSuccessState).personages..addAll(right),
+          isLoading: false,
+        );
+      });
+
+      emit(paginateState);
+    });
   }
 }

@@ -23,6 +23,8 @@ class PersonageDetailsRemoteDatasourceImpl implements PersonageDetailsRemoteData
         queries: {},
         url: PersonageEndpoint.personages + "/$id",
       );
+      var body = response.data['data']['results'] ?? [];
+      print(body);
       return PersonageMapper.fromMap(
         map: response.data['data']['results'] ?? [],
       );

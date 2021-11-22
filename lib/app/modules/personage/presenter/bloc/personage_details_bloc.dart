@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:motivacionow/app/modules/personage/domain/usecases/personage_details_usecase.dart';
 
+import '../../domain/usecases/personage_details_usecase.dart';
 import '../../domain/entities/personage.dart';
 
 part 'personage_details_event.dart';
