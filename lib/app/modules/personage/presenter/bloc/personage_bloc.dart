@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../../../core/helpers/errors/http_client_error.dart';
 import '../../domain/dtos/dtos.dart';
 import '../../domain/entities/personage.dart';
-import '../../domain/usecases/usecases.dart';
+import '../../domain/usecases/personage_usecase.dart';
 
 part 'personage_event.dart';
 part 'personage_state.dart';

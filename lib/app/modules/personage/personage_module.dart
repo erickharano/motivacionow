@@ -5,12 +5,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../core/adapters/http_client/http_client_adapter_impl.dart';
 import '../core/helpers/marvel/marvel_hash.dart';
 import '../core/helpers/url/personage_endpoint.dart';
-import 'domain/usecases/personage_usecase_impl.dart';
-import 'external/datasources/personage_remote_datasource_impl.dart';
-import 'infra/repositories/personage_repository_impl.dart';
-import 'presenter/bloc/personage_bloc.dart';
-import 'presenter/views/personage_view.dart';
-import 'presenter/views/personage_details_view.dart';
+import 'domain/usecases/usecases.dart';
+import 'external/datasources/datasources.dart';
+import 'infra/repositories/repositories.dart';
+import 'presenter/bloc/bloc.dart';
+import 'presenter/views/view.dart';
 
 class PersonageModule extends Module {
   var time = (DateTime.now().microsecondsSinceEpoch).toString();
@@ -38,6 +37,10 @@ class PersonageModule extends Module {
         Bind((i) => PersonageRepositoryImpl(datasource: i.get())),
         Bind((i) => PersonageUsecaseImpl(repository: i.get())),
         Bind((i) => PersonageBloc(usecase: i.get())),
+        Bind((i) => PersonageDetailsRemoteDatasourceImpl(httpClient: i.get())),
+        Bind((i) => PersonageDetailsRepositoryImpl(datasource: i.get())),
+        Bind((i) => PersonageDetailsUsecaseImpl(repository: i.get())),
+        Bind((i) => PersonageDetailsBloc(usecase: i.get())),
       ];
 
   @override

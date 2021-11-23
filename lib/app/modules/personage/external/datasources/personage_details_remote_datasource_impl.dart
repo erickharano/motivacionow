@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart' hide HttpClientAdapter;
 
 import '../../../core/helpers/url/personage_endpoint.dart';
@@ -24,10 +26,11 @@ class PersonageDetailsRemoteDatasourceImpl implements PersonageDetailsRemoteData
         url: PersonageEndpoint.personages + "/$id",
       );
       var body = response.data['data']['results'] ?? [];
-      print(body);
-      return PersonageMapper.fromMap(
-        map: response.data['data']['results'] ?? [],
+      List<Personage> list = PersonageMapper.fromListMap(
+        maps: (body as List).cast<Map<String, dynamic>>(),
       );
+
+      return list.first;
     } on Failure {
       rethrow;
     } on DioError catch (e) {

@@ -12,21 +12,15 @@ class PersonageDetailsBloc extends Bloc<PersonageDetailsEvent, PersonageDetailsS
 
   PersonageDetailsBloc({
     required this.usecase,
-  }) : super(const PersonageDetailsInitialState());
+  }) : super(const PersonageDetailsInitialState()) {
+    on<PersonageDetailsFetchEvent>((event, emit) async {
+      emit(const PersonageDetailsLoadingState());
 
-  Stream<PersonageDetailsState> mapEventToState(PersonageDetailsEvent event) async* {
-    if (event is PersonageDetailsFetchEvent) {
-      yield* mapPersonageFetchEventToState(event);
-    }
-  }
-
-  Stream<PersonageDetailsState> mapPersonageFetchEventToState(PersonageDetailsFetchEvent event) async* {
-    yield const PersonageDetailsLoadingState();
-
-    final response = await usecase.call(id: event.id);
-    yield response.fold(
-      (left) => PersonageDetailsErrorState(error: left.message),
-      (right) => PersonageDetailsSuccessState(personage: right),
-    );
+      final response = await usecase.call(id: event.id);
+      emit(response.fold(
+        (left) => PersonageDetailsErrorState(error: left.message),
+        (right) => PersonageDetailsSuccessState(personage: right),
+      ));
+    });
   }
 }
