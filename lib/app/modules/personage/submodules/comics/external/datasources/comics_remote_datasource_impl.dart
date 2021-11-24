@@ -3,7 +3,7 @@ import 'package:dio/dio.dart' hide HttpClientAdapter;
 import '../../../../../core/adapters/http_client/http_client_adapter.dart';
 import '../../../../../core/helpers/errors/errors.dart';
 import '../../infra/datatsources/comics_remote_datasource.dart';
-import '../../domain/entities/comics.dart';
+import '../../domain/entities/comic.dart';
 import '../mappers/comics_mapper.dart';
 
 class ComicsRemoteDatasourceImpl implements ComicsRemoteDatasource {
@@ -14,7 +14,7 @@ class ComicsRemoteDatasourceImpl implements ComicsRemoteDatasource {
   });
 
   @override
-  Future<List<Comics>> getAll({
+  Future<List<Comic>> getAll({
     required Map<String, dynamic> queries,
   }) async {
     try {

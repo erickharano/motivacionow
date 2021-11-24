@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Comics extends Equatable {
+class Comic extends Equatable {
   final int id;
   final String title;
   final String description;
@@ -8,7 +8,7 @@ class Comics extends Equatable {
 
   final int pageCount;
 
-  const Comics({
+  const Comic({
     required this.id,
     required this.title,
     required this.description,

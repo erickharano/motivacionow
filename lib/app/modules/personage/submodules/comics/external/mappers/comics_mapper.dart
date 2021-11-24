@@ -1,4 +1,4 @@
-import '../../domain/entities/comics.dart';
+import '../../domain/entities/comic.dart';
 import '../helpers/errors/comics_mapper_error.dart';
 
 class ComicsMapper {
@@ -23,7 +23,7 @@ class ComicsMapper {
     }
   }
 
-  static Map<String, dynamic> toMap({required Comics comic}) {
+  static Map<String, dynamic> toMap({required Comic comic}) {
     try {
       return {
         'id': comic.id,

@@ -1,7 +1,7 @@
-import '../../domain/entities/comics.dart';
+import '../../domain/entities/comic.dart';
 
 abstract class ComicsRemoteDatasource {
-  Future<List<Comics>> getAll({
+  Future<List<Comic>> getAll({
     required Map<String, dynamic> queries,
   });
 }
