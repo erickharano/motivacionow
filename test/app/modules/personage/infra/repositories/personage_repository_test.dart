@@ -51,6 +51,6 @@ void main() {
     expect(result.isLeft(), true);
     expect(result.fold(id, id), isA<Failure>());
 
-    verify(() => repository.getAll(params: params.toMap())).called(1);
+    verify(() => repository.getAll(params: params)).called(1);
   });
 }
