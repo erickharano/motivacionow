@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart' hide HttpClientAdapter;
 
 import '../../../core/helpers/url/personage_endpoint.dart';
@@ -9,7 +7,8 @@ import '../../infra/datasources/persosage_details_remote_datasource.dart';
 import '../../domain/entities/personage.dart';
 import '../mappers/personage_mapper.dart';
 
-class PersonageDetailsRemoteDatasourceImpl implements PersonageDetailsRemoteDatasource {
+class PersonageDetailsRemoteDatasourceImpl
+    implements PersonageDetailsRemoteDatasource {
   final HttpClientAdapter httpClient;
 
   PersonageDetailsRemoteDatasourceImpl({
