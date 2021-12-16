@@ -3,7 +3,7 @@ import 'package:dio/dio.dart' hide HttpClientAdapter;
 import '../../../core/helpers/url/personage_endpoint.dart';
 import '../../../core/adapters/http_client/http_client_adapter.dart';
 import '../../../core/helpers/errors/errors.dart';
-import '../../infra/datasources/persosage_remote_datasource.dart';
+import '../../infra/datasources/personage_remote_datasource.dart';
 import '../../domain/entities/personage.dart';
 import '../mappers/personage_mapper.dart';
 

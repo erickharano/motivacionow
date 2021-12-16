@@ -4,7 +4,7 @@ import '../../../core/helpers/errors/errors.dart';
 import '../../domain/repositories/personage_repository.dart';
 import '../../domain/dtos/personage_dto.dart';
 import '../../domain/entities/personage.dart';
-import '../datasources/persosage_remote_datasource.dart';
+import '../datasources/personage_remote_datasource.dart';
 
 class PersonageRepositoryImpl implements PersonageRepository {
   final PersonageRemoteDatasource datasource;

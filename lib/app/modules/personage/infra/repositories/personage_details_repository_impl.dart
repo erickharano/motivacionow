@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../core/helpers/errors/errors.dart';
 import '../../domain/repositories/personage_details_repository.dart';
 import '../../domain/entities/personage.dart';
-import '../datasources/persosage_details_remote_datasource.dart';
+import '../datasources/personage_details_remote_datasource.dart';
 
 class PersonageDetailsRepositoryImpl implements PersonageDetailsRepository {
   final PersonageDetailsRemoteDatasource datasource;
