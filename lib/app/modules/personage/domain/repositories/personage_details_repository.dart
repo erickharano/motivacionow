@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../core/helpers/errors/failure.dart';
+import '../../../../core/helpers/errors/errors.dart';
 import '../entities/personage.dart';
 
 abstract class PersonageDetailsRepository {

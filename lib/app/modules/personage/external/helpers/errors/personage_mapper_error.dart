@@ -1,4 +1,4 @@
-import '../../../../core/helpers/errors/failure.dart';
+import '../../../../../core/helpers/errors/failure.dart';
 
 class PersonageMapperError extends Failure {
   PersonageMapperError({
@@ -8,4 +8,9 @@ class PersonageMapperError extends Failure {
           message: message,
           stackTrace: stackTrace,
         );
+
+  @override
+  String toString() {
+    return "PersonageMapperError: $message";
+  }
 }

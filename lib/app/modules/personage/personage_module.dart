@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../core/adapters/http_client/http_client_adapter_impl.dart';
-import '../core/helpers/marvel/marvel_hash.dart';
-import '../core/helpers/url/personage_endpoint.dart';
+import '../../core/adapters/http_client/http_client_adapter_impl.dart';
+import '../../core/helpers/marvel/marvel_hash.dart';
+import '../../core/helpers/url/personage_endpoint.dart';
 import 'domain/usecases/usecases.dart';
 import 'external/datasources/datasources.dart';
 import 'infra/repositories/repositories.dart';

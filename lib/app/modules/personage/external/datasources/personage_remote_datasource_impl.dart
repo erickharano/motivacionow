@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart' hide HttpClientAdapter;
 
-import '../../../core/helpers/url/personage_endpoint.dart';
-import '../../../core/adapters/http_client/http_client_adapter.dart';
-import '../../../core/helpers/errors/errors.dart';
+import '../../../../core/helpers/url/personage_endpoint.dart';
+import '../../../../core/adapters/http_client/http_client_adapter.dart';
+import '../../../../core/helpers/errors/errors.dart';
 import '../../infra/datasources/personage_remote_datasource.dart';
 import '../../domain/entities/personage.dart';
 import '../mappers/personage_mapper.dart';
@@ -24,9 +24,13 @@ class PersonageRemoteDatasourceImpl implements PersonageRemoteDatasource {
         url: PersonageEndpoint.personages,
       );
       var body = response.data['data']['results'] ?? [];
-      return PersonageMapper.fromListMap(
-        maps: (body as List).cast<Map<String, dynamic>>(),
-      );
+
+      return (body as List)
+          .cast<Map<String, dynamic>>()
+          .map((map) => PersonageMapper(
+                map: map,
+              ).toEntity())
+          .toList();
     } on Failure {
       rethrow;
     } on DioError catch (e) {
