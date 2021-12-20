@@ -29,24 +29,25 @@ class PersonageBloc extends Bloc<PersonageEvent, PersonageState> {
       emit((state as PersonageSuccessState).copyWith(isLoading: true));
 
       var response = await usecase(params: event.params);
-      var paginateState = response.fold((left) {
+      response.fold((left) {
         if (left is HttpClientError && left.statusCode == 400) {
-          return (state as PersonageSuccessState).copyWith(
+          emit((state as PersonageSuccessState).copyWith(
             hasMax: true,
             isLoading: false,
-          );
+          ));
+        } else {
+          emit(PersonageErrorState(
+            error: left.message,
+          ));
         }
-        return PersonageErrorState(
-          error: left.message,
-        );
       }, (right) {
-        return PersonageSuccessState(
-          personages: (state as PersonageSuccessState).personages..addAll(right),
+        final personages = (state as PersonageSuccessState).personages;
+        emit(const PersonageLoadingState());
+        emit(PersonageSuccessState(
+          personages: personages..addAll(right),
           isLoading: false,
-        );
+        ));
       });
-
-      emit(paginateState);
     });
   }
 }

@@ -6,6 +6,7 @@ import 'package:motivacionow/app/core/helpers/errors/failure.dart';
 import 'package:motivacionow/app/modules/personage/domain/dtos/dtos.dart';
 import 'package:motivacionow/app/modules/personage/domain/entities/entities.dart';
 import 'package:motivacionow/app/modules/personage/domain/repositories/repositories.dart';
+import 'package:motivacionow/app/modules/personage/domain/usecases/personage_usecase.dart';
 import 'package:motivacionow/app/modules/personage/infra/datasources/datasources.dart';
 
 export 'package:dartz/dartz.dart';
@@ -25,8 +26,10 @@ export 'package:motivacionow/app/modules/personage/infra/repositories/repositori
 export 'package:motivacionow/app/modules/personage/external/datasources/personage_remote_datasource_impl.dart';
 export 'package:motivacionow/app/modules/personage/external/helpers/errors/personage_mapper_error.dart';
 export 'package:motivacionow/app/modules/personage/external/mappers/personage_mapper.dart';
+export 'package:motivacionow/app/modules/personage/domain/usecases/personage_usecase.dart';
 
-class PersonageDetailsRepositoryMock extends Mock implements PersonageDetailsRepository {}
+class PersonageDetailsRepositoryMock extends Mock
+    implements PersonageDetailsRepository {}
 
 class PersonageDTOFake extends Fake implements PersonageDTO {}
 
@@ -34,7 +37,10 @@ class PersonageFake extends Fake implements Personage {}
 
 class PersonageRepositoryMock extends Mock implements PersonageRepository {}
 
-class PersonageRemoteDatasourceMock extends Mock implements PersonageRemoteDatasource {}
+class PersonageUsecaseMock extends Mock implements PersonageUsecase {}
+
+class PersonageRemoteDatasourceMock extends Mock
+    implements PersonageRemoteDatasource {}
 
 class HttpClientAdapterMock extends Mock implements HttpClientAdapter {}
 

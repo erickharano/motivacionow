@@ -16,7 +16,8 @@ void main() {
   });
 
   test("deve retornar um caso de sucesso", () async {
-    when(() => repository.getAll(params: params)).thenAnswer((invocation) async => Right(response));
+    when(() => repository.getAll(params: params))
+        .thenAnswer((invocation) async => Right(response));
 
     final result = await usecase.call(params: params);
 
@@ -27,7 +28,8 @@ void main() {
   });
 
   test("deve retornar um caso de erro", () async {
-    when(() => repository.getAll(params: params)).thenAnswer((invocation) async => Left(FailMock()));
+    when(() => repository.getAll(params: params))
+        .thenAnswer((invocation) async => Left(FailMock()));
 
     final result = await usecase.call(params: params);
 

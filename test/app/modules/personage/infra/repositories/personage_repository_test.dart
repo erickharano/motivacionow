@@ -16,7 +16,8 @@ void main() {
   });
 
   test("deve retornar um caso de sucesso", () async {
-    when(() => datasource.getAll(queries: params.toMap())).thenAnswer((invocation) async => response);
+    when(() => datasource.getAll(queries: params.toMap()))
+        .thenAnswer((invocation) async => response);
 
     final result = await repository.getAll(params: params);
 
@@ -27,7 +28,8 @@ void main() {
   });
 
   test("deve retornar um caso de erro", () async {
-    when(() => datasource.getAll(queries: params.toMap())).thenThrow(FailMock());
+    when(() => datasource.getAll(queries: params.toMap()))
+        .thenThrow(FailMock());
 
     final result = await repository.getAll(params: params);
 
