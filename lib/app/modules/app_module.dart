@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'package:motivacionow/app/modules/personage/personage_module.dart';
+import 'package:marvel/marvel.dart';
 
 class AppModule extends Module {
   @override
@@ -8,6 +7,6 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/', module: PersonageModule()),
+        ModuleRoute('/', module: MarvelModule()),
       ];
 }

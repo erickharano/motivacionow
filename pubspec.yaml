@@ -29,16 +29,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  crypto: ^3.0.1
-  dartz: ^0.10.0
-  dio: ^4.0.1
-  equatable: ^2.0.3
-  flutter_bloc: ^8.0.0
-  flutter_dotenv: ^5.0.2
-  flutter_modular: ^4.2.0
-  intl: ^0.17.0
-  shimmer: ^2.0.0
-
+  core:
+    path: packages/core
+  marvel:
+    path: packages/marvel
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

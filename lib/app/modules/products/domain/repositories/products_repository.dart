@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../core/helpers/errors/failure.dart';
+import '../../../shared/helpers/errors/failure.dart';
 import '../dtos/product_dto.dart';
 import '../entities/products.dart';
 
